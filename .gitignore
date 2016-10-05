@@ -1,0 +1,136 @@
+<html><head>
+    <title>支付宝红包</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <style>
+    html { font-size: 16px; }
+a,body,div,footer,h1,h2,h3,h4,h5,h6,header,html,img,input,li,p,section,select,span,ul{margin:0;padding:0;-webkit-tap-highlight-color:rgba(255,0,0,0);border:none;outline:0;-webkit-touch-callout:none;text-decoration:none;list-style:none}
+body{font-family:'\5FAE\8F6F\96C5\9ED1','Helvetica Neue',Helvetica,Arial,sans-serif;background-color: #efeff4; text-align: center;padding-bottom: 75px;}
+.clearfix:after,.clearfix:before{display:table;line-height:0;content:""}
+.clearfix:after{clear:both}
+header,footer,h1,h2{display:block}
+
+.toast-tip{ position: fixed; width: 100%; height: 100%; background-color: rgba(0,0,0,0.1); top: 0; left: 0; z-index: 9999; display:none; }
+.toast-tip .content{ max-width: 80%; position: fixed; top: 50%; left: 50%; color: #fff; background-color: rgba(0,0,0,0.75); border-radius: 4px; line-height: 1.5; padding: 1rem 1rem; text-align: center; transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%);}
+
+header { position: relative;}
+header .redspace{height:10%;background-color: #dc594d;}
+.main { background-color: #fff; margin-top: -1px; }
+.icon {width: 22%;display:block;margin:0 auto;border:none}
+.logo { background:#ffffff url('data:image/png;base64,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') 50% 0 no-repeat; background-size:100%; }
+.app { color: #4a4947; font-size: 1.4rem; font-weight: 700; padding: 1rem 0 .5rem; }
+.main .greetings { color: #a4a4a3; font-size: 1rem; font-weight: normal; }
+
+.scroll-box{ padding: 2% 0;}
+.money { color: #ec544c; font-size: 4rem;height:4rem;line-height:4rem }
+
+.money span { color: #4a4947; font-size: 1.4rem; font-weight: 700;vertical-align:2px}
+.tip { color: #a5a5a5; padding: 2% 0 5%; }
+.line1px { height: 1px; background-color: #e8e8e8; }
+.btn { display: inline-block; padding: 3% 2%; margin: 3%; color: #01b4f6; font-size: 1.2rem; }
+.btn-show-detail{font-size:1rem}
+.fmark { color: #d8d8d8; font-size: .75rem; padding: 0 0 8px; }
+.fbtn-group .btn { padding: 10px;margin:0 auto; }
+footer { position: fixed; bottom: 0;left:0; width: 100%;height: 75px; background-color: #efeff4;}
+
+@-webkit-keyframes scrollText1 {
+     0%{ -webkit-transform: translateY(0); }
+    12%{ -webkit-transform: translateY(-64px); } 
+     24%{ -webkit-transform: translateY(-128px); }
+     36%{ -webkit-transform: translateY(-192px); }
+     48%{ -webkit-transform: translateY(-256px); }
+     61% { -webkit-transform: translateY(-320px); }
+     74% { -webkit-transform: translateY(-384px); }
+     86% { -webkit-transform: translateY(-448px); }
+     100% { -webkit-transform: translateY(-512px); }
+ }
+ @keyframes scrollText1 {
+  0%{ transform: translateY(0); } 
+  12%{ transform: translateY(-64px); } 
+  24%{ transform: translateY(-128px); } 
+  36%{ transform: translateY(-192px); } 
+  48%{ transform: translateY(-256px); } 
+  61% { transform: translateY(-320px); } 
+  74% { transform: translateY(-384px); } 
+  86% { transform: translateY(-448px); } 
+  100% { transform: translateY(-512px); } 
+} 
+.scrolling-animate{ -webkit-animation:scrollText1 5.4s infinite cubic-bezier(1,0,0.5,0); animation: scrollText1 5.4s infinite cubic-bezier(1,0,0.5,0); }
+
+.fbtn-group .btn{padding:6px 10px;}</style>
+</head>
+<body style="position: static;">
+<section class="toast-tip" id="toast-tip">
+    <div class="content">正在加载..</div>
+</section>
+<header>
+    <div class="redspace"></div>
+    <div class="logo">
+                <img style="border-radius:50%" class="icon" src="http://www.atool.org/temp/20161005044153557.ico" onerror="this.src='https://game.poketec.com/pkpoker/activity/template/zfbshare/picture/cn3.jpg' ">
+                <h1 class="app">操控者回家种田了</h1>
+    </div>
+</header>
+<div class="main">
+    <h2 class="greetings">恭喜发财，万事如意！</h2>
+        <div class="scroll-box">
+        <div id="J-scroll-box" style="height:4rem;overflow:hidden;position: relative">
+            <ul id="J-scrolling" class="scrolling-animate">
+                <li class="money">1000.00<span>元</span></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="tip">领取成功</div>
+    <div class="line1px"></div>
+    <div class="btn-group">
+                <a class="btn btn-exchange" id="J-invite" href="javascript:;">答谢</a>
+            </div><div class="btn-group">
+                <a class="btn btn-exchange" id="J-invite" href="javascript:;">我也要发红包</a>
+            </div>
+</div>
+<footer>
+     
+             <p class="fbtn-group"></p><div style="height:15px"></div><p></p>
+    <p class="fmark">红包编码：201610050106300170246653160005253988<br></p>
+</footer>
+<script>
+//     var $ = $ || {};
+//     $.ajax=function(a,b,c,d,e){var f=window.XMLHttpRequest?new window.XMLHttpRequest:new ActiveXObject("Microsoft.XMLHTTP"),g=b||"";f.onreadystatechange=function(){if(4==f.readyState)if(200==f.status)c.call(null,JSON.parse(f.responseText));else if(0==f.status){if(!e)return!1;e.call(null,f.responseText)}},f.open(d,a,!0),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8"),f.send(g)};
+//     $.post=function(a,b,c,d){ $.ajax(a,b,c,"POST",d)};
+//     $.select = function(selector,all){return all ? document.querySelectorAll(selector) : document.querySelector(selector);};
+
+//     function stat(id,type){return; $.post('ajaxStat','id='+id+'&type='+type,function(){ }) }
+//     function statPage(id){ stat(id,'page'); }
+//     function statClick(id){ stat(id,'btn'); }
+//     statPage('1');
+//     var _is_lock_toasttip=false;
+//     $.toastTip = function(msg,timer){
+//         if( _is_lock_toasttip ){
+//             return;
+//         }
+//         _is_lock_toasttip = true;
+//         var tip = $.select('#toast-tip');
+//         tip.style.display='block';
+//         $.select('#toast-tip .content').innerHTML=msg;
+//         setTimeout(function(){
+//             tip.style.display='none';
+//             _is_lock_toasttip = false;
+//         },timer?timer:1500);
+//     };
+//     $.closeAlert = function (){
+//         document.getElementById('J_alert').style.display='none';
+//     };
+//     $.showAlert = function (msg){
+//         if( msg ) document.querySelector('#J_alert .alert-content').innerHTML = msg;
+//         document.getElementById('J_alert').style.display='block';
+//     };
+    var _is_lock_ajax = false;
+    document.querySelector('#J-invite').addEventListener('click',function(){
+    	window.location.href = 'alipays://platformapi/startapp?appId=20000153&url=%2Fwww%2Fprofile.htm%3Fid%3D2016052301432568%26__webview_options__%3DtransparentTitle%253Dnone';
+    });
+</script>
+
+<div style="position: static; width: 0px; height: 0px; border: none; padding: 0px; margin: 0px;"><div id="trans-tooltip"><div id="tip-left-top" style="background: url(chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-left-top.png);"></div><div id="tip-top" style="background: url(chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-top.png) repeat-x;"></div><div id="tip-right-top" style="background: url(chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-right-top.png);"></div><div id="tip-right" style="background: url(chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-right.png) repeat-y;"></div><div id="tip-right-bottom" style="background: url(chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-right-bottom.png);"></div><div id="tip-bottom" style="background: url(chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-bottom.png) repeat-x;"></div><div id="tip-left-bottom" style="background: url(chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-left-bottom.png);"></div><div id="tip-left" style="background: url(chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-left.png);"></div><div id="trans-content"></div></div><div id="tip-arrow-bottom" style="background: url(chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-arrow-bottom.png);"></div><div id="tip-arrow-top" style="background: url(chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-arrow-top.png);"></div></div></body></html>
